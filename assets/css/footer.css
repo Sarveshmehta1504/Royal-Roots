@@ -1,0 +1,286 @@
+/* =============================================
+   FOOTER + FLOATING BUTTONS
+   ============================================= */
+
+/* === FOOTER === */
+.footer {
+  background: var(--charcoal-dark);
+  padding: 80px 0 0;
+  border-top: 3px solid var(--gold);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+  gap: 48px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Column 1: Brand */
+.footer__logo img {
+  height: 56px;
+  margin-bottom: var(--sp-2);
+}
+
+.footer__tagline {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.footer__about {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.7;
+  margin-bottom: var(--sp-3);
+}
+
+.footer__social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer__social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.footer__social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--gold);
+  transition: fill 0.2s ease;
+}
+
+.footer__social-link:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.footer__social-link:hover svg {
+  fill: var(--white);
+}
+
+/* Column headings */
+.footer__heading {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+/* Column links */
+.footer__links a {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 7px 0;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.footer__links a:hover {
+  color: var(--gold);
+  padding-left: 6px;
+}
+
+/* Column 4: Contact */
+.footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.footer__contact-item svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--gold);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.footer__contact-item a {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.footer__contact-item a:hover {
+  color: var(--gold);
+}
+
+.footer__directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold);
+  padding: 8px 16px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+}
+
+.footer__directions:hover {
+  background: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+}
+
+/* Bottom bar */
+.footer__bottom {
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer__bottom p,
+.footer__bottom a {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer__bottom a:hover { color: var(--gold); }
+
+.footer__bottom-links {
+  display: flex;
+  gap: 20px;
+}
+
+/* === FLOATING BUTTONS === */
+.floating-buttons {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: var(--z-floating);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.floating-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: var(--transition-base);
+  position: relative;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-btn.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.floating-btn:hover {
+  transform: scale(1.1);
+}
+
+.floating-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+.floating-btn--whatsapp {
+  background: var(--whatsapp);
+}
+
+.floating-btn--whatsapp svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--white);
+}
+
+.floating-btn--whatsapp:hover {
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+}
+
+.floating-btn--call {
+  background: var(--gold);
+  width: 52px;
+  height: 52px;
+}
+
+.floating-btn--call:hover {
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5);
+}
+
+.floating-btn--call svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: white;
+}
+
+/* Tooltip */
+.floating-btn__tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--charcoal);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-fast);
+}
+
+.floating-btn:hover .floating-btn__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Pulse animation */
+@keyframes floating-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.floating-btn--whatsapp.visible {
+  animation: floating-pulse 3.5s infinite;
+}
+
+.floating-btn--whatsapp:hover {
+  animation: none;
+}

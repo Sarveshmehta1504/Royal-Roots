@@ -1,0 +1,231 @@
+/* =============================================
+   SHARED COMPONENTS — Buttons, Cards, Badges, Forms
+   ============================================= */
+
+/* === BUTTONS === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  height: 54px;
+  padding: 0 36px;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+}
+.btn--primary:hover {
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.btn--outline:hover {
+  background: var(--gold);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn--outline-white {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+.btn--outline-white:hover {
+  background: var(--white);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+.btn--dark {
+  background: var(--charcoal);
+  color: var(--white);
+  border-color: var(--charcoal);
+}
+.btn--dark:hover {
+  background: var(--charcoal-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
+  font-weight: 500;
+}
+.btn--ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.btn--whatsapp {
+  background: var(--whatsapp);
+  color: var(--white);
+  border-color: var(--whatsapp);
+}
+.btn--whatsapp:hover {
+  background: #1EBE5A;
+  border-color: #1EBE5A;
+  transform: translateY(-2px);
+}
+
+.btn--full { width: 100%; }
+.btn--sm { height: 44px; padding: 0 24px; font-size: 13px; }
+
+/* === CTA LINK (underline style) === */
+.cta-link {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.cta-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.cta-link:hover::after { width: 100%; }
+
+/* === BADGE / PILL === */
+.badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+}
+
+.badge--gold {
+  background: var(--gold);
+  color: var(--white);
+}
+.badge--outline {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+
+/* === FORM ELEMENTS === */
+.form-group {
+  margin-bottom: var(--sp-3);
+}
+.form-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-dark);
+  background: var(--white);
+  transition: var(--transition-fast);
+}
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Pill multi-select */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill-option {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius-full);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  user-select: none;
+}
+.pill-option:hover { border-color: var(--gold); color: var(--gold); }
+.pill-option.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+/* === CARD BASE === */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* === DIVIDER === */
+.gold-divider {
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+  border: none;
+  margin: var(--sp-3) 0;
+}
+.gold-divider.centered { margin-left: auto; margin-right: auto; }
+
+/* === SECTION PADDING === */
+.section-padding {
+  padding: 100px 0;
+}

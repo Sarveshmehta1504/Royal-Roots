@@ -1,0 +1,59 @@
+/* =============================================
+   INNER PAGES CSS
+   ============================================= */
+
+/* Page Header */
+.page-header {
+  padding: 160px 0 80px;
+  background: var(--charcoal-dark);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center top, rgba(212,175,55,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-header__title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.page-header__desc {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Inner Sections */
+.inner-section {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.inner-section--alt {
+  background: var(--cream);
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 120px 0 60px;
+  }
+  .page-header__title {
+    font-size: 36px;
+  }
+  .inner-section {
+    padding: 60px 0;
+  }
+}
