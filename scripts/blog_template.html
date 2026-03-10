@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} | Royal Roots</title>
+    <meta name="description" content="{{META_DESC}}">
+    <link rel="canonical" href="https://www.royalrootsply.com/blog/{{SLUG}}.html">
+    <link rel="icon" type="image/png" href="../assets/images/logo/favicon.png">
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{META_DESC}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.royalrootsply.com/blog/{{SLUG}}.html">
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.royalrootsply.com/blog/{{SLUG}}.html"
+      },
+      "headline": "{{TITLE}}",
+      "description": "{{META_DESC}}",
+      "author": {
+        "@type": "Organization",
+        "name": "Royal Roots Experts"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Royal Roots Ply India",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.royalrootsply.com/assets/images/logo/logo-color.png"
+        }
+      },
+      "datePublished": "{{DATE}}"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/typography.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/blog.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+        <div class="container">
+            <a href="../index.html" class="navbar__logo" aria-label="Royal Roots Home">
+                <img src="../assets/images/logo/logo-white.png" alt="Homify Roots" height="42" width="130" style="margin-right:12px;">
+                <img src="../assets/images/logo/logo-color.png" alt="Royal Roots Ply India Pvt Ltd" height="42" width="130">
+            </a>
+            <ul class="navbar__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Us</a></li>
+                <li class="navbar__dropdown" id="productsDropdown">
+                    <a href="../products/index.html" id="productsToggle">Products <span class="navbar__dropdown-arrow"></span></a>
+                </li>
+                <li><a href="../gallery.html">Gallery</a></li>
+                <li><a href="../resources.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="index.html" class="active" style="color:var(--gold);">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== ARTICLE HERO ========== -->
+    <header class="blog-header" style="padding: 160px 0 80px;">
+        <div class="container blog-header__container">
+            <span class="blog-header__badge">{{CATEGORY}}</span>
+            <h1 class="blog-header__title">{{TITLE}}</h1>
+            <div class="blog-header__meta">
+                <div class="blog-header__meta-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    {{DATE_FORMATTED}}
+                </div>
+                <div class="blog-header__meta-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    {{READ_TIME}} min read
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== ARTICLE CONTENT ========== -->
+    <main class="article-main">
+        <div class="container">
+            <div class="article-content">
+{{CONTENT}}
+                
+                <hr>
+                
+                <div class="article-author">
+                    <img src="../assets/images/logo/favicon.png" alt="Royal Roots Logo" class="article-author__img" style="background:#111; padding: 10px;">
+                    <div class="article-author__text">
+                        <h4>Royal Roots Technical Team</h4>
+                        <p>Providing premium IS:710 certified plywood and modern architectural surfaces to creators across Gujarat since 2011.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" role="contentinfo" style="margin-top: 0;">
+        <div class="container">
+            <div class="footer__bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 40px;">
+                <p>&copy; 2026 Royal Roots Ply India Pvt. Ltd. <a href="index.html" style="color:var(--gold); margin-left: 10px;">&larr; Back to Blog</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

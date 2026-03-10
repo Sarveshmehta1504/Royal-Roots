@@ -57,3 +57,73 @@
     padding: 60px 0;
   }
 }
+
+/* =============================================
+   PREMIUM MINIMALIST INTERACTIONS
+   ============================================= */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Timeline Effects */
+.timeline-item {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.timeline-item:hover {
+  transform: translateX(10px);
+}
+
+/* Value & Feature Cards Hover */
+.value-card, [style*="box-shadow: 0 10px 30px"] {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-width: 1px 1px 3px 1px !important;
+  border-style: solid !important;
+}
+
+.value-card { border-color: rgba(255,255,255,0.03) rgba(255,255,255,0.03) var(--gold) rgba(255,255,255,0.03) !important; }
+
+.value-card:hover, [style*="box-shadow: 0 10px 30px"]:hover {
+  transform: translateY(-8px);
+}
+.value-card:hover { border-color: rgba(212,175,55,0.2) rgba(212,175,55,0.2) var(--gold) rgba(212,175,55,0.2) !important; box-shadow: 0 30px 60px rgba(0,0,0,0.4) !important; }
+[style*="box-shadow: 0 10px 30px"]:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.08) !important; }
+
+/* Icon Hover Transitions */
+.value-icon, [style*="background: rgba(212,175,55,0.1); border-radius: 50%"] {
+  transition: all 0.4s ease !important;
+}
+.value-card:hover .value-icon {
+  background: var(--gold) !important;
+  transform: scale(1.1);
+}
+.value-card:hover .value-icon svg { stroke: var(--charcoal-dark) !important; }
+
+/* Form Field Minimalism */
+.form-input, .form-textarea, select {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.form-input:focus, .form-textarea:focus, select:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 4px rgba(212,175,55,0.15) !important;
+  outline: none !important;
+  transform: translateY(-2px);
+}
+
+/* Dark Mode Form Overrides */
+form[action*="sarveshmehta1504"] input[style*="rgba(255,255,255,0.05)"]:focus,
+form[action*="sarveshmehta1504"] select[style*="rgba(255,255,255,0.05)"]:focus {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 4px rgba(212,175,55,0.2) !important;
+}
+
+/* Button Refinements */
+.btn {
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px; /* More architectural/minimalist */
+}
