@@ -3,3 +3,7 @@
 __pycache__/
 venv/
 .DS_Store
+
+# Firebase
+firebase_credentials.json
+firebase-debug.log
