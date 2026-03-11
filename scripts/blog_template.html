@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{TITLE}} | Royal Roots</title>
+    <title>{{TITLE}} | Royal Roots AI</title>
     <meta name="description" content="{{META_DESC}}">
     <link rel="canonical" href="https://www.royalrootsply.com/blog/{{SLUG}}.html">
     <link rel="icon" type="image/png" href="../assets/images/logo/favicon.png">
     
-    <!-- Open Graph for Social Media -->
-    <meta property="og:title" content="{{TITLE}}">
-    <meta property="og:description" content="{{META_DESC}}">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.royalrootsply.com/blog/{{SLUG}}.html">
-
-    <!-- Structured Data (JSON-LD) for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -25,17 +18,10 @@
       },
       "headline": "{{TITLE}}",
       "description": "{{META_DESC}}",
+      "image": "{{IMAGE_URL}}",
       "author": {
         "@type": "Organization",
         "name": "Royal Roots Experts"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Royal Roots Ply India",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.royalrootsply.com/assets/images/logo/logo-color.png"
-        }
       },
       "datePublished": "{{DATE}}"
     }
@@ -43,85 +29,163 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="../assets/css/variables.css">
-    <link rel="stylesheet" href="../assets/css/reset.css">
-    <link rel="stylesheet" href="../assets/css/typography.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
-    <link rel="stylesheet" href="../assets/css/navbar.css">
-    <link rel="stylesheet" href="../assets/css/footer.css">
-    <link rel="stylesheet" href="../assets/css/pages/blog.css">
+    <style>
+        /* Standalone Article Styles using Stitch Blueprint */
+        :root {
+            --charcoal: #1A1A1A;
+            --charcoal-light: #2A2A2A;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --cream: #FAF9F6;
+        }
+        body {
+            background-color: var(--charcoal);
+            color: var(--cream);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        nav {
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-logo { font-family: 'Newsreader', serif; font-size: 24px; color: var(--gold); text-decoration: none; }
+        .nav-link { color: var(--cream); text-decoration: none; margin-left: 32px; font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .article-hero {
+            height: 60vh;
+            min-height: 400px;
+            background-image: linear-gradient(rgba(26,26,26,0.3), rgba(26,26,26,1)), url('{{IMAGE_URL}}');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 80px 40px;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .category-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(36px, 5vw, 56px);
+            color: var(--gold-light);
+            margin: 0 0 24px 0;
+            line-height: 1.1;
+        }
+        .hero-meta {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .article-body {
+            max-width: 760px;
+            margin: 80px auto;
+            padding: 0 40px;
+            font-size: 18px;
+            color: #E2E2E2;
+        }
+        .article-body h2 {
+            font-family: 'Newsreader', serif;
+            color: var(--gold);
+            font-size: 32px;
+            margin: 60px 0 24px;
+            font-weight: 400;
+        }
+        .article-body h3 {
+            font-family: 'Newsreader', serif;
+            color: var(--gold-light);
+            font-size: 24px;
+            margin: 40px 0 16px;
+            font-weight: 400;
+        }
+        .article-body p { margin-bottom: 24px; }
+        .article-body ul { margin-bottom: 30px; padding-left: 20px; }
+        .article-body li { margin-bottom: 12px; }
+        .article-body blockquote {
+            border-left: 3px solid var(--gold);
+            padding-left: 24px;
+            margin: 40px 0;
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--gold-light);
+        }
+        
+        .author-box {
+            max-width: 760px;
+            margin: 0 auto 100px;
+            padding: 40px;
+            background: var(--charcoal-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .author-box img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold); }
+        .author-box h4 { margin: 0 0 8px; font-family: 'Newsreader', serif; font-size: 22px; color: var(--gold); }
+        .author-box p { margin: 0; color: rgba(255,255,255,0.7); font-size: 15px; }
+    </style>
 </head>
 <body>
 
-    <!-- ========== NAVBAR ========== -->
-    <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
-        <div class="container">
-            <a href="../index.html" class="navbar__logo" aria-label="Royal Roots Home">
-                <img src="../assets/images/logo/logo-white.png" alt="Homify Roots" height="42" width="130" style="margin-right:12px;">
-                <img src="../assets/images/logo/logo-color.png" alt="Royal Roots Ply India Pvt Ltd" height="42" width="130">
-            </a>
-            <ul class="navbar__links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="navbar__dropdown" id="productsDropdown">
-                    <a href="../products/index.html" id="productsToggle">Products <span class="navbar__dropdown-arrow"></span></a>
-                </li>
-                <li><a href="../gallery.html">Gallery</a></li>
-                <li><a href="../resources.html">Resources</a></li>
-                <li><a href="../contact.html">Contact</a></li>
-                <li><a href="index.html" class="active" style="color:var(--gold);">Blog</a></li>
-            </ul>
+    <nav>
+        <a href="../index.html" class="nav-logo" style="display: flex; align-items: center;">
+            <img src="../assets/images/logo/logo-white.png" alt="Homify Roots" height="36" style="margin-right:12px; max-width: 130px; object-fit: contain;">
+            <img src="../assets/images/logo/logo-color.png" alt="Royal Roots Ply" height="36" style="max-width: 130px; object-fit: contain;">
+        </a>
+        <div>
+            <a href="index.html" class="nav-link">Knowledge Hub</a>
+            <a href="../contact.html" class="nav-link" style="color: var(--gold);">Get Quote</a>
         </div>
     </nav>
 
-    <!-- ========== ARTICLE HERO ========== -->
-    <header class="blog-header" style="padding: 160px 0 80px;">
-        <div class="container blog-header__container">
-            <span class="blog-header__badge">{{CATEGORY}}</span>
-            <h1 class="blog-header__title">{{TITLE}}</h1>
-            <div class="blog-header__meta">
-                <div class="blog-header__meta-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    {{DATE_FORMATTED}}
-                </div>
-                <div class="blog-header__meta-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    {{READ_TIME}} min read
-                </div>
+    <header class="article-hero">
+        <div class="hero-content">
+            <span class="category-badge">{{CATEGORY}}</span>
+            <h1 class="hero-title">{{TITLE}}</h1>
+            <div class="hero-meta">
+                <span>By Royal Roots Experts</span>
+                <span>•</span>
+                <span>{{DATE_FORMATTED}}</span>
+                <span>•</span>
+                <span>{{READ_TIME}} min read</span>
             </div>
         </div>
     </header>
 
-    <!-- ========== ARTICLE CONTENT ========== -->
-    <main class="article-main">
-        <div class="container">
-            <div class="article-content">
+    <main class="article-body">
 {{CONTENT}}
-                
-                <hr>
-                
-                <div class="article-author">
-                    <img src="../assets/images/logo/favicon.png" alt="Royal Roots Logo" class="article-author__img" style="background:#111; padding: 10px;">
-                    <div class="article-author__text">
-                        <h4>Royal Roots Technical Team</h4>
-                        <p>Providing premium IS:710 certified plywood and modern architectural surfaces to creators across Gujarat since 2011.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer" role="contentinfo" style="margin-top: 0;">
-        <div class="container">
-            <div class="footer__bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 40px;">
-                <p>&copy; 2026 Royal Roots Ply India Pvt. Ltd. <a href="index.html" style="color:var(--gold); margin-left: 10px;">&larr; Back to Blog</a></p>
-            </div>
+    <div class="author-box">
+        <img src="../assets/images/logo/favicon.png" alt="Royal Roots" style="background: black; padding: 10px;">
+        <div>
+            <h4>Royal Roots Technical Team</h4>
+            <p>Premium IS:710 certified plywood, stylish laminates, and advanced architectural surfaces for the modern creator.</p>
         </div>
-    </footer>
+    </div>
 
-    <script src="../assets/js/main.js" defer></script>
 </body>
 </html>
