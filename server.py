@@ -27,7 +27,9 @@ app = Flask(__name__,
             template_folder='scripts/templates',
             static_folder=BASE_DIR,
             static_url_path='')
-app.secret_key = os.environ.get('SECRET_KEY', 'royal-roots-2026-ultra-secure-key')
+app.secret_key = os.environ.get('SECRET_KEY')
+if not app.secret_key:
+    raise RuntimeError("SECRET_KEY environment variable is not set!")
 
 # Production optimisations
 Compress(app)

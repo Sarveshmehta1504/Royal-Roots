@@ -246,7 +246,13 @@
         import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
-            apiKey: "YOUR_FIREBASE_API_KEY", // [REMOVED] Leaked key removed for security. Please rotate your keys!
+            /* 
+               CRITICAL SECURITY WARNING: 
+               DO NOT paste your actual API Key here. 
+               The 'apiKey' field should be populated via environment variables during deployment 
+               or updated in the local build, but NEVER committed to GitHub if it contains a real key.
+            */
+            apiKey: "YOUR_FIREBASE_API_KEY", // [SECURITY] Hardcoded key removed. Please use environment variables!
             authDomain: "swara-2b54e.firebaseapp.com",
             projectId: "swara-2b54e",
             storageBucket: "swara-2b54e.firebasestorage.app",
