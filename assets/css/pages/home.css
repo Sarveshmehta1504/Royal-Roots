@@ -159,6 +159,7 @@
   .hero__slide:first-child {
     opacity: 1 !important;
     z-index: 2 !important;
+    border-radius: 0 !important; /* Ensure no rounded corners */
   }
 
   /* Overlay stays inside slides */
@@ -241,6 +242,7 @@
     border-top: 1px solid rgba(255,255,255,0.07) !important;
     opacity: 1 !important;
     animation: none !important;
+    margin-bottom: 30px !important; /* Spacing added at the bottom of the box */
   }
 
   .hero__trust-item {
