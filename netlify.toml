@@ -1,0 +1,5 @@
+[build]
+  publish = "."
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "apiKey,appId,authDomain,measurementId,messagingSenderId,projectId,storageBucket"
