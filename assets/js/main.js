@@ -45,6 +45,20 @@ function initMobileMenu() {
     });
   });
 
+  // Close button click
+  const closeBtn = document.getElementById('mobileNavClose');
+  if (closeBtn) {
+    console.log('Mobile nav close button found');
+    closeBtn.addEventListener('click', () => {
+      console.log('Mobile nav close clicked');
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  } else {
+    console.warn('Mobile nav close button NOT found');
+  }
+
   // Mobile products accordion
   const accordionToggle = document.getElementById('mobileProductsToggle');
   const accordionSub = document.getElementById('mobileProductsSub');

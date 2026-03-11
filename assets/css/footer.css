@@ -18,9 +18,16 @@
 }
 
 /* Column 1: Brand */
+.footer__logo {
+  display: flex;
+  align-items: center; /* vertical center */
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
 .footer__logo img {
-  height: 56px;
-  margin-bottom: var(--sp-2);
+  height: 48px;
+  width: auto;
 }
 
 .footer__tagline {
@@ -284,3 +291,36 @@
 .floating-btn--whatsapp:hover {
   animation: none;
 }
+
+/* Responsive Footer Improvements */
+@media (max-width: 768px) {
+  .footer { 
+    padding: 60px 0 30px !important; 
+  }
+  .footer__grid { 
+    grid-template-columns: 1fr !important; 
+    text-align: center !important; 
+    gap: 40px !important;
+  }
+  /* Hide redundant links on mobile to prevent "mirroring" the menu */
+  .footer__col:nth-child(2),
+  .footer__col:nth-child(3) {
+    display: none !important;
+  }
+  .footer__logo {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto 24px !important;
+    gap: 12px !important;
+  }
+  .footer__logo img {
+    height: 40px !important; /* Slightly smaller for mobile stacking */
+    margin: 0 !important;
+  }
+  .footer__social { justify-content: center !important; }
+  .footer__contact-item { justify-content: center !important; }
+  .footer__directions { margin: 16px auto 0 !important; width: fit-content !important; }
+}
+

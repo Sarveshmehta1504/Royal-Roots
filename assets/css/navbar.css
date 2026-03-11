@@ -261,6 +261,7 @@
   cursor: pointer;
   padding: 8px;
   z-index: calc(var(--z-navbar) + 2);
+  position: relative;
 }
 
 .hamburger__line {
@@ -291,17 +292,48 @@
   height: 100vh;
   height: 100dvh;
   background: var(--charcoal-dark);
-  z-index: calc(var(--z-navbar) + 1);
+  z-index: calc(var(--z-navbar) + 50); /* High above everything */
   display: flex;
   flex-direction: column;
   padding: 100px 40px 40px;
   transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow-y: auto;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .mobile-nav.open {
   right: 0;
+  visibility: visible;
+  pointer-events: auto;
 }
+
+.mobile-nav__close {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background: rgba(212, 175, 55, 0.15) !important;
+  border: 2px solid rgba(212, 175, 55, 0.5) !important;
+  color: var(--gold) !important;
+  font-size: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  line-height: 1 !important;
+}
+
+.mobile-nav__close:hover {
+  background: var(--gold) !important;
+  color: var(--white) !important;
+}
+
 
 .mobile-nav__links {
   flex: 1;
@@ -356,10 +388,12 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
+  display: flex !important; /* force vertical stacking */
+  flex-direction: column !important;
 }
 
 .mobile-nav__sub.open {
-  max-height: 400px;
+  max-height: 500px;
 }
 
 .mobile-nav__sub a {
