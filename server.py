@@ -9,12 +9,39 @@ from firebase_admin import credentials, auth, firestore, storage
 load_dotenv()
 
 # ── Firebase ────────────────────────────────────────────────────────────────
-CRED_PATH = os.path.join(os.path.dirname(__file__), 'firebase_credentials.json')
-cred = credentials.Certificate(CRED_PATH)
-firebase_admin.initialize_app(cred, {
-    'storageBucket': 'swara-2b54e.firebasestorage.app'
-})
-db = firestore.client()
+def initialize_firebase():
+    firebase_service_account = os.environ.get('FIREBASE_SERVICE_ACCOUNT')
+    
+    if firebase_service_account:
+        print("🔧 Initializing Firebase with Service Account from Environment")
+        try:
+            # Handle both JSON string and base64 encoded JSON
+            import base64
+            if not firebase_service_account.strip().startswith('{'):
+                firebase_service_account = base64.b64decode(firebase_service_account).decode('utf-8')
+            
+            cred_dict = json.loads(firebase_service_account)
+            cred = credentials.Certificate(cred_dict)
+        except Exception as e:
+            print(f"❌ Error parsing FIREBASE_SERVICE_ACCOUNT: {e}")
+            raise e
+    else:
+        print("📂 Initializing Firebase with local credentials file")
+        CRED_PATH = os.path.join(os.path.dirname(__file__), 'firebase_credentials.json')
+        if not os.path.exists(CRED_PATH):
+            raise RuntimeError("Neither FIREBASE_SERVICE_ACCOUNT env var nor firebase_credentials.json found!")
+        cred = credentials.Certificate(CRED_PATH)
+
+    firebase_admin.initialize_app(cred, {
+        'storageBucket': 'swara-2b54e.firebasestorage.app'
+    })
+
+try:
+    initialize_firebase()
+    db = firestore.client()
+except Exception as e:
+    print(f"🔥 Firebase Initialization Failed: {e}")
+    db = None
 
 # ── Gemini ───────────────────────────────────────────────────────────────────
 api_key = os.getenv("GEMINI_API_KEY")
