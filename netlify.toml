@@ -1,9 +1,7 @@
 [build]
   command = "mkdir -p dist && rsync -a --exclude='netlify' --exclude='functions' --exclude='dist' --exclude='.git' . dist/ && echo 'Static files prepared in dist/'"
   publish = "dist"
-
-[functions]
-  directory = "netlify/functions"
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/admin"

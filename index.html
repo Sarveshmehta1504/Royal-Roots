@@ -714,7 +714,7 @@
 
                 function renderBlogs(blogs, container) {
                     container.innerHTML = blogs.map((b, i) => `
-                        <article class="blog-card reveal" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(26,26,26,0.9)), url('${b.image_url}'); background-size: cover; background-position: center; min-height: 400px; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none; text-align: left;">
+                        <article class="blog-card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(26,26,26,0.9)), url('${b.image_url}'); background-size: cover; background-position: center; min-height: 400px; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none; text-align: left;">
                             <div class="blog-card__body" style="position: relative; z-index: 2;">
                                 <span class="blog-card__tag" style="color:var(--gold); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block;">${escapeHTML(b.category || 'Plywood')} &bull; ${escapeHTML(b.tag || '')}</span>
                                 <h3 class="blog-card__title" style="color:white; font-family:var(--font-heading); font-size:24px; margin-bottom:12px;">${escapeHTML(b.title)}</h3>
