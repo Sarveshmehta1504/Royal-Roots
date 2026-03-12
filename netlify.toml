@@ -4,7 +4,7 @@
   publish = "dist"
 
 [functions]
-  directory = "netlify/functions"
+  directory = "srv"
 
 # ── Admin & Auth (always need the backend) ──
 [[redirects]]
