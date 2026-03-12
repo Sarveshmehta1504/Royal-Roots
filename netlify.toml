@@ -6,32 +6,32 @@
 # ── Admin & Auth (always need the backend) ──
 [[redirects]]
   from = "/admin"
-  to = "/.netlify/functions/backend"
+  to = "/.netlify/functions/backend/admin"
   status = 200
   force = true
 
 [[redirects]]
   from = "/login"
-  to = "/.netlify/functions/backend"
+  to = "/.netlify/functions/backend/login"
   status = 200
   force = true
 
 [[redirects]]
   from = "/logout"
-  to = "/.netlify/functions/backend"
+  to = "/.netlify/functions/backend/logout"
   status = 200
   force = true
 
 [[redirects]]
   from = "/verify_token"
-  to = "/.netlify/functions/backend"
+  to = "/.netlify/functions/backend/verify_token"
   status = 200
   force = true
 
 # ── API endpoints (backend functions) ──
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/backend"
+  to = "/.netlify/functions/backend/api/:splat"
   status = 200
   force = true
 
