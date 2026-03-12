@@ -1,6 +1,6 @@
 [build]
-  command = "cp server.py netlify/functions/ && cp requirements.txt netlify/functions/ && cp -r scripts netlify/functions/ && echo 'Build Complete'"
-  publish = "."
+  command = "mkdir -p dist && rsync -a --exclude='netlify' --exclude='dist' --exclude='.git' . dist/ && echo 'Static files prepared in dist/'"
+  publish = "dist"
 
 [functions]
   directory = "netlify/functions"
