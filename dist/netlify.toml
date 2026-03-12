@@ -1,0 +1,45 @@
+[build]
+  command = "mkdir -p dist && rsync -a --exclude='netlify' --exclude='functions' --exclude='dist' --exclude='.git' . dist/ && echo 'Static files prepared in dist/'"
+  publish = "dist"
+
+[functions]
+  directory = "functions"
+
+[[redirects]]
+  from = "/admin"
+  to = "/.netlify/functions/backend"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/login"
+  to = "/.netlify/functions/backend"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/logout"
+  to = "/.netlify/functions/backend"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/verify_token"
+  to = "/.netlify/functions/backend"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/backend"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/.netlify/functions/backend"
+  status = 200
+  force = true
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "apiKey,appId,authDomain,measurementId,messagingSenderId,projectId,storageBucket"

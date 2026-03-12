@@ -1,0 +1,7 @@
+firebase-functions
+firebase-admin
+flask
+flask-compress
+google-generativeai
+python-dotenv
+werkzeug==2.3.8

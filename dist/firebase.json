@@ -1,0 +1,45 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "venv",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "runtime": "python310"
+    }
+  ],
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/login",
+        "function": "backend"
+      },
+      {
+        "source": "/admin",
+        "function": "backend"
+      },
+      {
+        "source": "/verify_token",
+        "function": "backend"
+      },
+      {
+        "source": "/api/**",
+        "function": "backend"
+      },
+      {
+        "source": "/blog/**",
+        "function": "backend"
+      }
+    ]
+  }
+}
