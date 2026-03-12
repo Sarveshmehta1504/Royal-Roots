@@ -13,35 +13,49 @@ def initialize_firebase():
     firebase_service_account = os.environ.get('FIREBASE_SERVICE_ACCOUNT')
     
     if firebase_service_account:
-        print("🔧 Initializing Firebase with Service Account from Environment")
+        print(f"🔧 [DEBUG] Found FIREBASE_SERVICE_ACCOUNT (len: {len(firebase_service_account)})")
         try:
             # Handle both JSON string and base64 encoded JSON
             import base64
-            if not firebase_service_account.strip().startswith('{'):
-                firebase_service_account = base64.b64decode(firebase_service_account).decode('utf-8')
+            # Strip whitespace and quotes that might have been added by mistake
+            raw_cred = firebase_service_account.strip()
+            if raw_cred.startswith('"') and raw_cred.endswith('"'):
+                raw_cred = raw_cred[1:-1]
+                
+            if not raw_cred.startswith('{'):
+                print("🔧 [DEBUG] Attempting base64 decode...")
+                raw_cred = base64.b64decode(raw_cred).decode('utf-8')
             
-            cred_dict = json.loads(firebase_service_account)
+            cred_dict = json.loads(raw_cred)
+            print(f"🔧 [DEBUG] Successfully parsed service account for project: {cred_dict.get('project_id')}")
             cred = credentials.Certificate(cred_dict)
         except Exception as e:
-            print(f"❌ Error parsing FIREBASE_SERVICE_ACCOUNT: {e}")
-            raise e
+            print(f"❌ [ERROR] Failed to parse FIREBASE_SERVICE_ACCOUNT: {str(e)}")
+            # Don't raise here, let the fallback or None handle it
+            return None
     else:
-        print("📂 Initializing Firebase with local credentials file")
+        print("📂 [DEBUG] No FIREBASE_SERVICE_ACCOUNT env var found, checking local file...")
         CRED_PATH = os.path.join(os.path.dirname(__file__), 'firebase_credentials.json')
-        if not os.path.exists(CRED_PATH):
-            raise RuntimeError("Neither FIREBASE_SERVICE_ACCOUNT env var nor firebase_credentials.json found!")
-        cred = credentials.Certificate(CRED_PATH)
+        if os.path.exists(CRED_PATH):
+            print(f"📂 [DEBUG] Using local file: {CRED_PATH}")
+            cred = credentials.Certificate(CRED_PATH)
+        else:
+            print("❌ [ERROR] No credentials found!")
+            return None
 
-    firebase_admin.initialize_app(cred, {
-        'storageBucket': 'swara-2b54e.firebasestorage.app'
-    })
+    try:
+        if not firebase_admin._apps:
+            firebase_admin.initialize_app(cred, {
+                'storageBucket': 'swara-2b54e.firebasestorage.app'
+            })
+            print("🔥 [SUCCESS] Firebase app initialized")
+        return True
+    except Exception as e:
+        print(f"🔥 [ERROR] firebase_admin.initialize_app failed: {e}")
+        return None
 
-try:
-    initialize_firebase()
-    db = firestore.client()
-except Exception as e:
-    print(f"🔥 Firebase Initialization Failed: {e}")
-    db = None
+firebase_initialized = initialize_firebase()
+db = firestore.client() if firebase_initialized else None
 
 # ── Gemini ───────────────────────────────────────────────────────────────────
 api_key = os.getenv("GEMINI_API_KEY")
