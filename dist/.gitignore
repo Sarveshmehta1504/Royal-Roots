@@ -7,3 +7,6 @@ venv/
 # Firebase
 firebase_credentials.json
 firebase-debug.log
+
+# Local Netlify folder
+.netlify

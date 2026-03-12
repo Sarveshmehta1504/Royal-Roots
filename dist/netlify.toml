@@ -3,7 +3,7 @@
   publish = "dist"
 
 [functions]
-  directory = "functions"
+  directory = "netlify/functions"
 
 [[redirects]]
   from = "/admin"
