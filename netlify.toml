@@ -1,7 +1,7 @@
 [build]
-  command = "rm -rf dist && mkdir -p dist && rsync -a --exclude='netlify' --exclude='functions' --exclude='dist' --exclude='.git' . dist/ && echo 'Static files prepared in dist/'"
+  command = "rm -rf dist && mkdir -p dist && rsync -a --exclude='dist' --exclude='.git' . dist/ && echo 'Static files prepared in dist/'"
   publish = "dist"
-  functions = "functions"
+  functions = "dist/netlify/functions"
 
 # ── Admin & Auth (always need the backend) ──
 [[redirects]]
