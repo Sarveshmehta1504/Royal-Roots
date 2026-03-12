@@ -6,31 +6,37 @@
   from = "/admin"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/login"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/logout"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/verify_token"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/blog/*"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [build.environment]
   SECRETS_SCAN_OMIT_KEYS = "apiKey,appId,authDomain,measurementId,messagingSenderId,projectId,storageBucket"
