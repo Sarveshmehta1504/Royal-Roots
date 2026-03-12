@@ -1,5 +1,5 @@
 [build]
-  command = "mkdir -p dist && rsync -a --exclude='netlify' --exclude='functions' --exclude='dist' --exclude='.git' . dist/ && echo 'Static files prepared in dist/'"
+  command = "pip install -r netlify/functions/backend/requirements.txt -t netlify/functions/backend && mkdir -p dist && rsync -a --exclude='netlify' --exclude='functions' --exclude='dist' --exclude='.git' . dist/ && echo 'Static files prepared in dist/'"
   publish = "dist"
   functions = "netlify/functions"
 

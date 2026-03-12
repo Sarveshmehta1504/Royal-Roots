@@ -3,6 +3,5 @@ flask-compress
 firebase-admin
 google-generativeai
 python-dotenv
-gunicorn
 serverless-wsgi
 Werkzeug==2.3.8

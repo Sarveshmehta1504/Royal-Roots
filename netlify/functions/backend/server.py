@@ -63,10 +63,14 @@ if api_key:
     genai.configure(api_key=api_key)
 
 # ── Flask ────────────────────────────────────────────────────────────────────
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+# In Netlify functions, this file is deeply nested. We need to point to the root.
+CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
+# current dir is: /var/.../netlify/functions/backend, root is 3 levels up
+ROOT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, '..', '..', '..'))
+
 app = Flask(__name__,
-            template_folder='scripts/templates',
-            static_folder=BASE_DIR,
+            template_folder=os.path.join(ROOT_DIR, 'scripts/templates'),
+            static_folder=ROOT_DIR,
             static_url_path='')
 app.secret_key = os.environ.get('SECRET_KEY')
 if not app.secret_key:
