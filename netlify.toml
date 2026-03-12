@@ -1,44 +1,43 @@
 [build]
-  command = "echo 'Starting Python Function Build...'"
+  command = "cp server.py netlify/functions/ && cp requirements.txt netlify/functions/ && cp -r scripts netlify/functions/ && echo 'Build Complete'"
   publish = "."
 
 [functions]
   directory = "netlify/functions"
-  node_bundler = "esbuild" # Though Python doesn't use it, it's good for standard config.
 
 [[redirects]]
   from = "/admin"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/handler"
   status = 200
   force = true
 
 [[redirects]]
   from = "/login"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/handler"
   status = 200
   force = true
 
 [[redirects]]
   from = "/logout"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/handler"
   status = 200
   force = true
 
 [[redirects]]
   from = "/verify_token"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/handler"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/handler"
   status = 200
   force = true
 
 [[redirects]]
   from = "/blog/*"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/handler"
   status = 200
   force = true
 
