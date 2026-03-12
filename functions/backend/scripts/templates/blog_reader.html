@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Loading Article… | Royal Roots Ply India</title>
+    <meta name="description" id="pageDesc" content="">
+    <link rel="canonical" id="pageCanon" href="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600&display=swap" rel="stylesheet">
+    <link href="/assets/css/variables.css" rel="stylesheet">
+    <link href="/assets/css/reset.css" rel="stylesheet">
+    <link href="/assets/css/navbar.css" rel="stylesheet">
+    <link href="/assets/css/footer.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #FAF9F6; color: #1A1A1A; }
+
+        /* HERO */
+        .blog-hero {
+            background: #1A1A1A;
+            position: relative;
+            min-height: 460px;
+            display: flex; align-items: flex-end;
+            overflow: hidden;
+        }
+        .blog-hero__bg {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            filter: brightness(.5);
+        }
+        .blog-hero__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,26,.9), transparent 50%); }
+        .blog-hero__content { position: relative; z-index: 2; padding: 60px max(32px,calc((100vw - 860px)/2)); }
+        .blog-hero__tag { color: #D4AF37; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
+        .blog-hero__title { font-family: 'Newsreader', serif; color: white; font-size: clamp(28px,4.5vw,50px); line-height: 1.18; margin-bottom: 18px; }
+        .blog-hero__meta { display: flex; gap: 20px; color: rgba(255,255,255,.65); font-size: 14px; }
+
+        /* ARTICLE BODY */
+        .article-wrap { max-width: 860px; margin: 0 auto; padding: 60px 32px 80px; }
+        .article-wrap h2, .article-wrap h3 { font-family: 'Newsreader', serif; color: #1A1A1A; margin: 36px 0 14px; }
+        .article-wrap p { line-height: 1.85; color: #444; margin-bottom: 18px; }
+        .article-wrap ul, .article-wrap ol { padding-left: 24px; margin-bottom: 18px; }
+        .article-wrap li { line-height: 1.8; color: #444; margin-bottom: 6px; }
+        .article-wrap blockquote { border-left: 4px solid #D4AF37; padding: 14px 20px; background: #fffdf0; border-radius: 0 8px 8px 0; margin: 24px 0; }
+        .article-wrap img { max-width: 100%; border-radius: 10px; }
+        .article-wrap strong { color: #1A1A1A; }
+
+        /* Loading / Error states */
+        .state-box { text-align: center; padding: 80px 20px; }
+        .state-box i { font-size: 48px; color: #ccc; margin-bottom: 16px; display: block; }
+        .spinner { animation: spin 1s linear infinite; color: #D4AF37 !important; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* CTA strip */
+        .article-cta { background: #1A1A1A; padding: 48px 32px; text-align: center; margin-top: 60px; }
+        .article-cta h3 { font-family: 'Newsreader', serif; color: #D4AF37; font-size: 26px; margin-bottom: 10px; }
+        .article-cta p { color: rgba(255,255,255,.7); margin-bottom: 22px; }
+        .article-cta .btn { display: inline-block; padding: 14px 32px; background: #D4AF37; color: #1A1A1A; font-family: inherit; border-radius: 8px; text-decoration: none; font-weight: 700; }
+
+        /* Breadcrumb */
+        .breadcrumb { padding: 14px max(32px,calc((100vw - 860px)/2)); font-size: 13px; color: #aaa; background: white; border-bottom: 1px solid #eee; }
+        .breadcrumb a { color: #aaa; text-decoration: none; }
+        .breadcrumb a:hover { color: #D4AF37; }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR injected dynamically -->
+<div id="navbarPlaceholder"></div>
+
+<div id="pageContent">
+    <div class="state-box">
+        <i class="fas fa-spinner spinner" id="loadSpinner"></i>
+        <p>Loading article…</p>
+    </div>
+</div>
+
+<!-- FOOTER placeholder -->
+<div id="footerPlaceholder"></div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script defer src="/assets/js/main.js"></script>
+<script defer src="/assets/js/animations.js"></script>
+
+<script>
+    const slug = "{{ slug }}";
+
+    async function loadArticle() {
+        try {
+            const res = await fetch(`/api/blogs/${slug}`);
+            if (!res.ok) throw new Error('Article not found');
+            const blog = await res.json();
+            renderArticle(blog);
+        } catch(e) {
+            document.getElementById('pageContent').innerHTML = `
+                <div class="state-box">
+                    <i class="fas fa-exclamation-circle" style="color:#E53E3E;"></i>
+                    <h2>Article Not Found</h2>
+                    <p style="color:#888;">This article may have been moved or deleted.</p>
+                    <a href="/blog/index.html" style="display:inline-block;margin-top:20px;padding:12px 24px;background:#D4AF37;color:#1A1A1A;border-radius:8px;text-decoration:none;font-weight:700;">← Browse All Articles</a>
+                </div>`;
+        }
+    }
+
+    function renderArticle(blog) {
+        document.title = blog.title + ' | Royal Roots Ply India';
+        document.getElementById('pageDesc').content = blog.meta_desc || blog.excerpt || '';
+        document.getElementById('pageCanon').href = window.location.href;
+
+        const heroImg = blog.image_url || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=80";
+
+        document.getElementById('pageContent').innerHTML = `
+            <nav class="breadcrumb">
+                <a href="/">Home</a> &nbsp;/&nbsp;
+                <a href="/blog/index.html">Articles</a> &nbsp;/&nbsp;
+                ${escapeHtml(blog.title)}
+            </nav>
+
+            <div class="blog-hero">
+                <div class="blog-hero__bg" style="background-image:url('${blog.image_url || ''}')"></div>
+                <div class="blog-hero__overlay"></div>
+                <div class="blog-hero__content">
+                    <div class="blog-hero__tag"><i class="fas fa-tag"></i> ${escapeHtml(blog.category||'Uncategorised')} &bull; ${escapeHtml(blog.tag||'')}</div>
+                    <h1 class="blog-hero__title">${escapeHtml(blog.title)}</h1>
+                    <div class="blog-hero__meta">
+                        <span><i class="fas fa-clock"></i> ${escapeHtml(blog.read_time||'5 min')} read</span>
+                        <span><i class="fas fa-calendar"></i> ${formatDate(blog.created_at)}</span>
+                    </div>
+                </div>
+            </div>
+
+            <article class="article-wrap">
+                ${blog.content}
+            </article>
+
+            <div class="article-cta">
+                <h3>Ready to Start Your Project?</h3>
+                <p>Talk to our experts. Get a free quote on premium IS:710 certified plywood and more.</p>
+                <a href="/contact.html" class="btn">Get a Free Quote →</a>
+            </div>`;
+    }
+
+    function escapeHtml(s) {
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+    }
+    function formatDate(ts) {
+        if (!ts) return 'Recent';
+        try { return new Date(ts).toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'}); }
+        catch(e) { return 'Recent'; }
+    }
+
+    loadArticle();
+</script>
+</body>
+</html>
