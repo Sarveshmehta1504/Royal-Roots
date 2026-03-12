@@ -1,3 +1,4 @@
+# Netlify Configuration - Trigger build at 2026-03-12 16:54
 [build]
   command = "rm -rf dist && mkdir -p dist && rsync -a --exclude='dist' --exclude='.git' . dist/"
   publish = "dist"

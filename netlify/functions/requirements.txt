@@ -1,0 +1,7 @@
+flask
+firebase-admin
+google-generativeai
+python-dotenv
+serverless-wsgi
+Werkzeug
+Flask-Compress
