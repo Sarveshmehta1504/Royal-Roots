@@ -7,37 +7,37 @@
 
 [[redirects]]
   from = "/admin"
-  to = "/.netlify/functions/handler"
+  to = "/.netlify/functions/backend"
   status = 200
   force = true
 
 [[redirects]]
   from = "/login"
-  to = "/.netlify/functions/handler"
+  to = "/.netlify/functions/backend"
   status = 200
   force = true
 
 [[redirects]]
   from = "/logout"
-  to = "/.netlify/functions/handler"
+  to = "/.netlify/functions/backend"
   status = 200
   force = true
 
 [[redirects]]
   from = "/verify_token"
-  to = "/.netlify/functions/handler"
+  to = "/.netlify/functions/backend"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/handler"
+  to = "/.netlify/functions/backend"
   status = 200
   force = true
 
 [[redirects]]
   from = "/blog/*"
-  to = "/.netlify/functions/handler"
+  to = "/.netlify/functions/backend"
   status = 200
   force = true
 
