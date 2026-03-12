@@ -1,6 +1,9 @@
 [build]
   publish = "."
-  functions = "netlify/functions"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild" # Though Python doesn't use it, it's good for standard config.
 
 [[redirects]]
   from = "/admin"
