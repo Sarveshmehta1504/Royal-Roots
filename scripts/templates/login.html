@@ -252,7 +252,7 @@
                The 'apiKey' field should be populated via environment variables during deployment 
                or updated in the local build, but NEVER committed to GitHub if it contains a real key.
             */
-            apiKey: "YOUR_FIREBASE_API_KEY", // [SECURITY] Hardcoded key removed. Please use environment variables!
+            apiKey: "{{ firebase_api_key }}",
             authDomain: "swara-2b54e.firebaseapp.com",
             projectId: "swara-2b54e",
             storageBucket: "swara-2b54e.firebasestorage.app",

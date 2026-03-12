@@ -130,7 +130,7 @@ Do NOT wrap in markdown code blocks."""
 def login():
     if session.get('user_id'):
         return redirect(url_for('admin'))
-    return render_template('login.html')
+    return render_template('login.html', firebase_api_key=os.environ.get('FIREBASE_API_KEY', 'YOUR_FIREBASE_API_KEY'))
 
 @app.route('/verify_token', methods=['POST'])
 def verify_token():
