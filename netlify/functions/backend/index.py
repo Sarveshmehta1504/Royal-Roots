@@ -1,2 +1,5 @@
+import serverless_wsgi
+from server import app
+
 def handler(event, context):
-    return {"statusCode": 200, "body": "Hello"}
+    return serverless_wsgi.handle_request(app, event, context)
