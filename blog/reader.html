@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Loading Article… | Royal Roots Ply India</title>
+    <meta name="description" id="pageDesc" content="">
+    <link rel="canonical" id="pageCanon" href="">
+    <link rel="icon" href="../assets/images/logo/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600&display=swap" rel="stylesheet">
+    <style>
+        :root{--charcoal:#1A1A1A;--gold:#D4AF37;--gold-light:#F3E5AB;--cream:#FAF9F6;}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+        body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+        /* NAV */
+        nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.06);background:var(--charcoal);}
+        .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+        .nav-logo img{height:36px;object-fit:contain;max-width:130px;}
+        .nav-link{color:var(--cream);text-decoration:none;margin-left:28px;font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:1px;transition:.2s;}
+        .nav-link:hover{color:var(--gold);}
+
+        /* HERO */
+        .blog-hero {
+            background: var(--charcoal);
+            position: relative;
+            min-height: 460px;
+            display: flex; align-items: flex-end;
+            overflow: hidden;
+        }
+        .blog-hero__bg {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            filter: brightness(.5);
+        }
+        .blog-hero__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,26,.9), transparent 50%); }
+        .blog-hero__content { position: relative; z-index: 2; padding: 60px max(32px,calc((100vw - 860px)/2)); }
+        .blog-hero__tag { color: var(--gold); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
+        .blog-hero__title { font-family: 'Newsreader', serif; color: white; font-size: clamp(28px,4.5vw,50px); line-height: 1.18; margin-bottom: 18px; }
+        .blog-hero__meta { display: flex; gap: 20px; color: rgba(255,255,255,.65); font-size: 14px; }
+
+        /* ARTICLE BODY */
+        .article-wrap { max-width: 860px; margin: 0 auto; padding: 60px 32px 80px; }
+        .article-wrap h2, .article-wrap h3 { font-family: 'Newsreader', serif; color: var(--charcoal); margin: 36px 0 14px; }
+        .article-wrap p { line-height: 1.85; color: #444; margin-bottom: 18px; }
+        .article-wrap ul, .article-wrap ol { padding-left: 24px; margin-bottom: 18px; }
+        .article-wrap li { line-height: 1.8; color: #444; margin-bottom: 6px; }
+        .article-wrap blockquote { border-left: 4px solid var(--gold); padding: 14px 20px; background: #fffdf0; border-radius: 0 8px 8px 0; margin: 24px 0; }
+        .article-wrap img { max-width: 100%; border-radius: 10px; }
+        .article-wrap strong { color: var(--charcoal); }
+
+        /* Loading / Error states */
+        .state-box { text-align: center; padding: 80px 20px; }
+        .state-box h2 { font-family: 'Newsreader', serif; margin-bottom: 12px; }
+        .spinner-icon { display: inline-block; width: 48px; height: 48px; border: 4px solid rgba(212,175,55,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* CTA strip */
+        .article-cta { background: var(--charcoal); padding: 48px 32px; text-align: center; margin-top: 60px; }
+        .article-cta h3 { font-family: 'Newsreader', serif; color: var(--gold); font-size: 26px; margin-bottom: 10px; }
+        .article-cta p { color: rgba(255,255,255,.7); margin-bottom: 22px; }
+        .article-cta .btn { display: inline-block; padding: 14px 32px; background: var(--gold); color: var(--charcoal); font-family: inherit; border-radius: 8px; text-decoration: none; font-weight: 700; transition: .2s; }
+        .article-cta .btn:hover { background: var(--gold-light); }
+
+        /* Breadcrumb */
+        .breadcrumb { padding: 14px max(32px,calc((100vw - 860px)/2)); font-size: 13px; color: #aaa; background: white; border-bottom: 1px solid #eee; }
+        .breadcrumb a { color: #aaa; text-decoration: none; }
+        .breadcrumb a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer{text-align:center;padding:50px 20px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.06);background:var(--charcoal);}
+
+        /* Browse button */
+        .browse-btn { display:inline-block; margin-top:20px; padding:14px 28px; background:var(--gold); color:var(--charcoal); border-radius:8px; text-decoration:none; font-weight:700; transition:.2s; }
+        .browse-btn:hover { background:var(--gold-light); }
+
+        @media(max-width:768px){
+            nav{padding:14px 20px;}
+            .nav-link{margin-left:16px;font-size:12px;}
+            .blog-hero{min-height:340px;}
+            .article-wrap{padding:40px 20px 60px;}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-logo" href="../index.html">
+        <img alt="Homify Roots" src="../assets/images/logo/logo-white.png">
+        <img alt="Royal Roots Ply" src="../assets/images/logo/logo-color.png">
+    </a>
+    <div>
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link" href="index.html">Knowledge Hub</a>
+        <a class="nav-link" href="../products/index.html">Products</a>
+        <a class="nav-link" href="../contact.html">Get Quote</a>
+    </div>
+</nav>
+
+<div id="pageContent">
+    <div class="state-box">
+        <div class="spinner-icon"></div>
+        <p>Loading article…</p>
+    </div>
+</div>
+
+<footer><p>© 2026 Royal Roots Ply India Pvt. Ltd.</p></footer>
+
+<script>
+    // ── Static blog articles (used when backend is unavailable) ──
+    const staticArticles = {
+        "guide-to-plywood-grades": {
+            title: "The Ultimate Guide to Plywood Grades: MR vs BWR vs BWP",
+            category: "Education",
+            tag: "Plywood Guide",
+            meta_desc: "Learn the key differences between MR, BWR, and BWP plywood grades. Choose the right grade for kitchens, bathrooms, furniture and outdoor use.",
+            read_time: "7 min",
+            image_url: "../assets/images/blog/photo-1600210492486-724fe5c67fb0.jpg",
+            content: `
+                <h2>Understanding Plywood Grades</h2>
+                <p>Choosing the right plywood grade is one of the most important decisions in any interior or construction project. The grade determines how well the plywood resists moisture, its structural integrity, and ultimately how long your furniture or fittings will last.</p>
+
+                <h3>MR Grade (Moisture Resistant)</h3>
+                <p>MR grade plywood, conforming to IS:303, uses urea formaldehyde resin. It offers basic moisture resistance suitable for interior furniture in dry areas like bedrooms and living rooms. It is the most affordable option and works well for wardrobes, TV units, and study tables.</p>
+                <p><strong>Best for:</strong> Bedrooms, living rooms, study rooms — any area not exposed to direct water contact.</p>
+
+                <h3>BWR Grade (Boiling Water Resistant)</h3>
+                <p>BWR grade plywood, also known as IS:303 Type II, uses phenol formaldehyde resin which provides superior water resistance. This grade can withstand occasional moisture exposure, making it ideal for kitchens and areas near plumbing.</p>
+                <p><strong>Best for:</strong> Kitchens, washbasins, utility areas — spaces with moderate moisture exposure.</p>
+
+                <h3>BWP Grade (Boiling Water Proof)</h3>
+                <p>BWP grade plywood, conforming to IS:710, is the premium choice. It uses high-grade phenolic resin under intense pressure, making it virtually waterproof. Royal Roots Ply's IS:710 certified plywood is engineered to withstand extreme moisture conditions.</p>
+                <p><strong>Best for:</strong> Bathrooms, outdoor furniture, marine applications — any area with heavy water exposure.</p>
+
+                <blockquote><strong>Pro Tip:</strong> Always look for the ISI mark and check the IS standard number. At Royal Roots Ply, every sheet carries genuine IS:710 certification for your peace of mind.</blockquote>
+
+                <h2>How to Choose the Right Grade</h2>
+                <p>Consider three factors: the location of installation, expected moisture levels, and your budget. For premium projects, BWP grade (IS:710) offers the best long-term value. For budget-friendly interior work in dry areas, MR grade is perfectly suitable.</p>
+            `
+        },
+        "designer-laminates-guide": {
+            title: "Transforming Luxury Spaces with High-Gloss Designer Laminates",
+            category: "Design",
+            tag: "Laminates",
+            meta_desc: "Explore how high-gloss and textured laminates can transform your interiors. Tips from Royal Roots Ply on choosing designer laminates for modern homes.",
+            read_time: "6 min",
+            image_url: "../assets/images/blog/photo-1586023492125-27b2c045efd7.jpg",
+            content: `
+                <h2>The Power of Surface Finishes</h2>
+                <p>In modern interior design, the surface finish often makes a bigger visual impact than the furniture form itself. Designer laminates have evolved from simple protective layers to statement-making design elements that define the character of a space.</p>
+
+                <h3>High-Gloss Laminates</h3>
+                <p>High-gloss laminates create a mirror-like, reflective surface that instantly makes spaces feel larger and more luxurious. They're perfect for modular kitchens, wardrobes, and TV units where you want a sleek, contemporary look.</p>
+                <p>Our Royal Roots high-gloss collection features over 200 shades — from classic whites and warm wood-tones to bold jewel shades like emerald and midnight blue.</p>
+
+                <h3>Textured & Matt Finishes</h3>
+                <p>For a more understated elegance, textured laminates replicate the feel of natural materials — from raw wood grain to stone and leather. Matt finishes are fingerprint-resistant and work beautifully in spaces where tactile quality matters.</p>
+
+                <h3>Anti-Fingerprint (AFP) Laminates</h3>
+                <p>A game-changer for high-traffic areas, AFP laminates feature a special nano-coating that resists smudges and is incredibly easy to clean. Ideal for kitchen cabinets and children's rooms.</p>
+
+                <blockquote><strong>Design Tip:</strong> Mix high-gloss and matt finishes in the same space for visual contrast. For example, use high-gloss on upper kitchen cabinets and a wood-textured matt on the lower units.</blockquote>
+
+                <h2>Choosing the Right Laminate</h2>
+                <p>Consider the room's lighting (high-gloss amplifies light), the level of daily use (AFP for kitchens), and the overall design theme. Visit our showroom to experience the textures firsthand — digital images can't capture the tactile quality of premium laminates.</p>
+            `
+        },
+        "luxury-veneer-guide": {
+            title: "Natural Gurjan Veneer: The Soul of Premium Architectural Projects",
+            category: "Luxury",
+            tag: "Veneer Hub",
+            meta_desc: "Discover why natural Gurjan veneer is the preferred choice for luxury interiors. Learn about veneer types, applications, and care tips from Royal Roots Ply.",
+            read_time: "8 min",
+            image_url: "../assets/images/blog/photo-1600566753190-17f0baa2a6c3.jpg",
+            content: `
+                <h2>Why Natural Veneer?</h2>
+                <p>Natural wood veneer represents the pinnacle of interior surface finishes. Each sheet is unique — a thin slice of real wood that brings the warmth, depth, and character of natural timber to your projects without the weight, cost, or environmental impact of solid wood.</p>
+
+                <h3>The Gurjan Advantage</h3>
+                <p>Gurjan (Dipterocarpus) is one of the world's most prized hardwoods for veneer production. Known for its interlocking grain, golden-brown hue, and exceptional durability, Gurjan veneer from Royal Roots is sourced from sustainable plantations and processed to exacting standards.</p>
+                <p>Each sheet undergoes steam treatment for flexibility, precision slicing for uniform thickness, and controlled drying to ensure dimensional stability.</p>
+
+                <h3>Types of Veneer Cuts</h3>
+                <p><strong>Crown Cut:</strong> Produces a cathedral or flame-like pattern. The most traditional and visually dramatic option.</p>
+                <p><strong>Quarter Cut:</strong> Creates straight, uniform lines. Produces a more contemporary and subtle look.</p>
+                <p><strong>Rotary Cut:</strong> Offers a wide, sweeping grain pattern. Often used for panels and large surfaces.</p>
+
+                <blockquote><strong>Architect's Choice:</strong> For feature walls and statement pieces, crown-cut Gurjan veneer delivers unmatched visual drama. For corporate boardrooms and minimal interiors, quarter-cut provides elegant restraint.</blockquote>
+
+                <h2>Applications & Care</h2>
+                <p>Natural veneer excels on wall panelling, doors, headboards, reception desks, and ceiling panels. It pairs beautifully with brass, marble, and dark metals for a luxury aesthetic.</p>
+                <p>To maintain its beauty, clean with a slightly damp cloth and apply furniture polish every few months. Avoid direct sunlight to prevent fading. With proper care, veneer surfaces can last decades.</p>
+            `
+        }
+    };
+
+    // ── Get slug from URL path ──
+    function getSlugFromURL() {
+        const path = window.location.pathname;
+        // Handle /blog/reader.html?slug=xxx format
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('slug')) return params.get('slug');
+        // Handle /blog/slug-name format (if routed here via Netlify redirect)
+        const parts = path.split('/').filter(Boolean);
+        if (parts.length >= 2 && parts[0] === 'blog' && parts[1] !== 'index.html' && parts[1] !== 'reader.html') {
+            return parts[1];
+        }
+        return null;
+    }
+
+    const slug = getSlugFromURL();
+
+    async function loadArticle() {
+        if (!slug) {
+            showNotFound();
+            return;
+        }
+
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+            const res = await fetch(`/api/blogs/${slug}`, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (!res.ok) throw new Error('API returned error');
+            const blog = await res.json();
+            if (blog.error) throw new Error(blog.error);
+            renderArticle(blog);
+        } catch(e) {
+            console.log('API unavailable, trying static fallback:', e.message);
+            // Try static fallback
+            if (staticArticles[slug]) {
+                renderArticle(staticArticles[slug]);
+            } else {
+                showNotFound();
+            }
+        }
+    }
+
+    function showNotFound() {
+        document.getElementById('pageContent').innerHTML = `
+            <div class="state-box">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" style="margin-bottom:16px;">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+                </svg>
+                <h2>Article Not Found</h2>
+                <p style="color:#888;max-width:400px;margin:0 auto;">This article may have been moved, deleted, or the server is currently unavailable.</p>
+                <a href="/blog/index.html" class="browse-btn">← Browse All Articles</a>
+            </div>`;
+    }
+
+    function renderArticle(blog) {
+        document.title = escapeHtml(blog.title) + ' | Royal Roots Ply India';
+        document.getElementById('pageDesc').content = blog.meta_desc || blog.excerpt || '';
+        document.getElementById('pageCanon').href = window.location.href;
+
+        const heroImg = blog.image_url || "../assets/images/blog/photo-1586023492125-27b2c045efd7.jpg";
+
+        document.getElementById('pageContent').innerHTML = `
+            <nav class="breadcrumb">
+                <a href="/">Home</a> &nbsp;/&nbsp;
+                <a href="/blog/index.html">Articles</a> &nbsp;/&nbsp;
+                ${escapeHtml(blog.title)}
+            </nav>
+
+            <div class="blog-hero">
+                <div class="blog-hero__bg" style="background-image:url('${heroImg}')"></div>
+                <div class="blog-hero__overlay"></div>
+                <div class="blog-hero__content">
+                    <div class="blog-hero__tag">${escapeHtml(blog.category||'Uncategorised')} &bull; ${escapeHtml(blog.tag||'')}</div>
+                    <h1 class="blog-hero__title">${escapeHtml(blog.title)}</h1>
+                    <div class="blog-hero__meta">
+                        <span>🕐 ${escapeHtml(blog.read_time||'5 min')} read</span>
+                        <span>📅 ${formatDate(blog.created_at)}</span>
+                    </div>
+                </div>
+            </div>
+
+            <article class="article-wrap">
+                ${blog.content}
+            </article>
+
+            <div class="article-cta">
+                <h3>Ready to Start Your Project?</h3>
+                <p>Talk to our experts. Get a free quote on premium IS:710 certified plywood and more.</p>
+                <a href="/contact.html" class="btn">Get a Free Quote →</a>
+            </div>`;
+    }
+
+    function escapeHtml(s) {
+        if (!s) return '';
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+    }
+    function formatDate(ts) {
+        if (!ts) return 'Recent';
+        try { return new Date(ts).toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'}); }
+        catch(e) { return 'Recent'; }
+    }
+
+    loadArticle();
+</script>
+</body>
+</html>

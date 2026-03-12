@@ -135,17 +135,21 @@
     async function loadBlogs() {
         const grid = document.getElementById('blogGrid');
         try {
-            const response = await fetch('/api/blogs');
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+            const response = await fetch('/api/blogs', { signal: controller.signal });
+            clearTimeout(timeoutId);
+            
             const blogs = await response.json();
             
             if (blogs && blogs.length > 0 && !blogs.error) {
                 renderBlogs(blogs);
             } else {
-                console.log("No blogs found or error, using static fallback");
-                renderBlogs(staticBlogs);
+                throw new Error("Empty or error response");
             }
         } catch (error) {
-            console.error('Error loading blogs:', error);
+            console.warn('Backend unavailable (3s timeout/error), using static fallback');
             renderBlogs(staticBlogs);
         }
     }

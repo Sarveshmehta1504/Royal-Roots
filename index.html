@@ -728,13 +728,19 @@
                 document.addEventListener('DOMContentLoaded', async () => {
                     const grid = document.getElementById('homeBlogGrid');
                     try {
-                        const res = await fetch('/api/blogs');
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 3000);
+                        
+                        const res = await fetch('/api/blogs', { signal: controller.signal });
+                        clearTimeout(timeoutId);
+                        
                         if (!res.ok) throw new Error('Backend unreachable');
                         const blogs = await res.json();
-                        if (!blogs.length) throw new Error('No blogs found');
+                        if (!blogs || !blogs.length || blogs.error) throw new Error('No valid blogs found');
+                        
                         renderBlogs(blogs.slice(0, 3), grid);
                     } catch (e) {
-                        console.log('Falling back to static blogs due to:', e.message);
+                        console.log('Falling back (3s timeout/error) to static blogs:', e.message);
                         renderBlogs(staticBlogs, grid);
                     }
                 });

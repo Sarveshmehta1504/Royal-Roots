@@ -3,6 +3,7 @@
   publish = "dist"
   functions = "netlify/functions"
 
+# ── Admin & Auth (always need the backend) ──
 [[redirects]]
   from = "/admin"
   to = "/.netlify/functions/backend"
@@ -27,17 +28,28 @@
   status = 200
   force = true
 
+# ── API endpoints (backend functions) ──
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/backend"
   status = 200
   force = true
 
+# ── Blog: Individual articles → static reader ──
+# We use force = false so that real files (like index.html, reader.html, or images) are served first.
+# Only if the file DOES NOT exist will it rewrite to reader.html.
 [[redirects]]
-  from = "/blog/*"
-  to = "/.netlify/functions/backend"
+  from = "/blog/:slug"
+  to = "/blog/reader.html?slug=:slug"
   status = 200
-  force = true
+  force = false
+
+# ── Explicitly handle the blog root just in case ──
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 200
+  force = false
 
 [build.environment]
   SECRETS_SCAN_OMIT_KEYS = "apiKey,appId,authDomain,measurementId,messagingSenderId,projectId,storageBucket"
